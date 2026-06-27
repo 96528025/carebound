@@ -1,0 +1,36 @@
+services:
+  - type: web
+    name: carebound
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt && pip install scalekit-sdk-python && pip install starlette==0.41.3
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: STORAGE_MODE
+        value: fallback
+      - key: DEMO_IDENTITY_MODE
+        value: "true"
+      - key: SCALEKIT_ENV_URL
+        sync: false
+      - key: SCALEKIT_CLIENT_ID
+        sync: false
+      - key: SCALEKIT_CLIENT_SECRET
+        sync: false
+      - key: SCALEKIT_CONNECTION_NAME
+        value: gmail
+      - key: GMAIL_CONNECTION_NAME
+        value: gmail
+      - key: GOOGLE_CALENDAR_CONNECTION_NAME
+        value: googlecalendar
+      - key: ANTHROPIC_API_KEY
+        sync: false
+      - key: VECTORAI_HOST
+        sync: false
+      - key: VECTORAI_PORT
+        sync: false
+      - key: VECTORAI_USERNAME
+        sync: false
+      - key: VECTORAI_PASSWORD
+        sync: false
+      - key: VECTORAI_DATABASE
+        sync: false
